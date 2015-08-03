@@ -100,16 +100,24 @@
 \newcommand\spanset[1]{\ensuremath\spann(#1)}
 
 
-
 \begin{document}
 
+% hide subsubsections
+\setcounter{tocdepth}{2}
+ % \setlength{\mtcindent}{5pt}
+% two column TOC
 \dosecttoc
-\setlength{\mtcindent}{5pt}
 \begin{multicols}{2}
 \tableofcontents
 \end{multicols}
 
 \input{ch1.tex}
+\input{ch2.tex}
+%\input{ch3.tex}
+\input{ch4.tex}
+%\input{ch5.tex}
+%\input{ch6.tex}
+%\input{ch7.tex}
+%\input{ch8.tex}
 
 \end{document}
-
