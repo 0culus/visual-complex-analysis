@@ -10,7 +10,7 @@
 \renewcommand*{\familydefault}{\sfdefault}
 
 % MATH
-\usepackage{mathtools, amsfonts, amssymb}
+\usepackage{mathtools, amsfonts, amssymb, amsthm}
 
 % compact lists (compactitem, compactenum, compactdesc)
 \usepackage{paralist}
@@ -62,12 +62,38 @@
     \egroup%
 }
 
+% Define Theorem, Lemma, Corollary
+\swapnumbers
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{rem}{Remark}
+\newtheorem{examp}[thm]{Example}
+
+% Define Z, R, Q, C, etc. From Dr. Avramidi
+\def\II{\mathbb{I}}
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\CC{\mathbb{C}}
+\def\QQ{\mathbb{Q}}
+\def\NN{\mathbb{N}}
+\def\FF{\mathbb{F}}
+
 \newcommand{\bm}[1]{\mathbf{#1}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 
+% Define norm and abs
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\lVert#1\rVert}
 
+\newcommand{\ang}[1]{\ensuremath{\left\langle #1 \right\rangle}}
 
+\DeclareMathOperator{\spann}{span}
+\newcommand\spanset[1]{\ensuremath\spann(#1)}
 
 \begin{document}
 
@@ -80,3 +106,4 @@
 \input{ch1.tex}
 
 \end{document}
+
