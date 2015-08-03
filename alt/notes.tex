@@ -1,0 +1,82 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[bookmarks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true]%
+    {microtype}
+
+% sans serif
+\renewcommand*{\familydefault}{\sfdefault}
+
+% MATH
+\usepackage{mathtools, amsfonts, amssymb}
+
+% compact lists (compactitem, compactenum, compactdesc)
+\usepackage{paralist}
+
+% nicer tables
+\usepackage{booktabs}
+
+% sans serif math
+\usepackage{arevtext,arevmath}
+
+% text columns
+\usepackage{multicol}
+
+% frames around text
+\usepackage{mdframed}
+
+% section style
+\usepackage{sectsty}
+
+% margins
+\usepackage[top=0.25in, bottom=0.25in, left=0.25in, right=0.25in]{geometry}
+
+% per-section toc
+\usepackage[insection]{minitoc}
+
+\sectionfont{\rmfamily}
+\subsectionfont{\rmfamily\centering}
+
+% Custom environemnts: outline and card
+\newenvironment{outline}[1][3]% % number of columns defaults to 3
+{\secttoc%
+    \bgroup%
+    \footnotesize%
+    \begin{multicols}%
+    {#1}%
+}%
+{\end{multicols}%
+    \egroup%
+}
+
+\newenvironment{card}[1][2]% % number of columns defaults to 2
+{\bgroup%
+    \begin{mdframed}%
+    \begin{multicols}%
+    {#1}%
+}%
+{\end{multicols}%
+    \end{mdframed}%
+    \egroup%
+}
+
+\newcommand{\bm}[1]{\mathbf{#1}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+
+
+
+\begin{document}
+
+\dosecttoc
+\setlength{\mtcindent}{5pt}
+\begin{multicols}{2}
+\tableofcontents
+\end{multicols}
+
+% \input{.tex}
+
+\end{document}
