@@ -1,12 +1,98 @@
-\section{title}
+\section{}
 \begin{outline}
     % includes \secttoc
 \end{outline}
 
 \begin{card}
-    \subsection{}
+    \subsection{Introduction}
 
     \begin{compactdesc}
-    \item[]
+    \item[Complex numbers] form the set $\C$ and
+        have form $a + ib$ where $a,b\in\R$ and $i^2=-1$.
+        Initially regarded with suspicion, confusion, even hostility.
+    \item[Geometric interpretation] discovered independently and simultaneously
+        by Gauss, Wessel, Argand. The number $a + ib$ can be represented by
+        a vector from the origin to the point $(a,b)$. Then $\C$ is called the
+        complex plane. There was now a way of making sense of complex numbers;
+        the floodgates of innovation were about to open.
+    \item[Sum] of two complex numbers is given by the parallelogram rule of
+        ordinary vector addition.
+    \item[Multiplication] The length of $AB$ is the product of the lengths of
+        $A$ and $B$, and the angle of $AB$ is the sum of the angles of $A$ and
+        $B$.
+    \item[Symbolic form] of addition and multiplication were first discovered
+        by Bombelli. A general cubic can always be reduced to $x^3 = 3px + 2q$.
+        Finding $x$ is tantamount to finding the intersection between a line
+        and $x^3$. This can always be solved with the remarkable formula
+        $x = \sqrt[3]{q + \sqrt{q^2 - p^3}}
+           + \sqrt[3]{q - \sqrt{q^2 - p^3}}$.
+        Obviously, there should always be a point of intersection, but
+        what if $p^3 > q^2$?
+        This question gave rise to symbolic addition and multiplication of complex numbers
+        and a practical use for $\C$.
     \end{compactdesc}
 \end{card}
+\begin{card}
+    \begin{compactdesc}
+    \item[Symbolic addition]
+        $(a + i\tilde{a}) + (b + i\tilde{b})$
+
+        = $(a + b) + i(\tilde{a} + \tilde{b})$
+    \item[Symbolic multiplication]
+        $(a + i\tilde{a}) (b + i\tilde{b})$
+
+        = $(a\tilde{a} - b\tilde{b}) + i(a\tilde{b} + b\tilde{a})$
+    \item[Modulus] is the length of $z = \norm{z}$.
+    \item[Argument] of $z$ is the angle $\theta = \arg(z) = \tan^{-1}(y/x)$.
+    \item[Real part] of $z$ is its x-coordinate $\re(z)$.
+    \item[Imaginary part] of $z$ is its y-coordinate $\im(z)$.
+    \item[Complex conjugate] of $z$ is the reflection of $z$ in the real axis,
+        $\overline z$.
+    \item[Geometric Shorthand] (outdated, Euler's formula preferred)
+        a complex number can be represented as $R \angle \phi$.
+    \item[Geometric multiplication] $(R \angle \phi)(r \angle \theta) = (Rr) \angle (\phi + \theta)$
+    \item[Geometric inverse] $\dfrac{1}{r \angle \theta} = (1/r) \angle (-\theta)$
+    \item[Symbolic inverse] $\dfrac{1}{x + iy} = \dfrac{x - iy}{x^2 + y^2}$
+    \end{compactdesc}
+\end{card}
+
+\begin{card}
+\subsubsection{Equivalence of Symbolic and Geometric Arithmetic}
+
+Easy to show addition rules are equivalent.
+
+\textsl{Geometrically, multiplication by a complex number $A = R\angle\phi$
+is a rotation of the plane through angle $\phi$ and an expansion by factor
+$R$.}
+
+Proof: the symbolic multiplication rule will be derived
+from the geometric multiplication rule and
+then vice versa. (i) Using geometric multiplication,
+observe that $i^2 = -1$.
+
+Figure [5] shows the lightly shaded being transformed into the darkly shaded shapes
+by being multiplied by $2 \angle \frac{\pi}{3}$.
+(ii) Rotations and expansions preserve parallelograms, so $A(B + C) = AB + AC$.
+See Figure [5]. $\square$
+
+Figure [6a] demonstrates the transformation $z \mapsto iz$.
+It is just a rotation by $\frac{\pi}{2}$.
+
+Figure [6b] is transformed into figure [6c] by multiplying by $4 + 3i$.
+It can be interpreted as
+$z \mapsto Az = (4 + 3i)z = 4z + 3(iz)$
+= $4z + 3(z \text{ rotated by } \frac{\pi}{2})$.
+
+This is how the geometric rule can be derived from the symbolic rule.
+$\blacksquare$
+\end{card}
+
+\subsection{Euler's Formula}
+
+\subsection{Applications}
+\subsubsection{Trigonometry}
+\subsubsection{Geometry}
+\subsubsection{Calculus}
+\subsubsection{Algebra}
+
+\subsection{Transformations and Euclidean Geometry}
