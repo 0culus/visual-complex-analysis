@@ -1,0 +1,244 @@
+\section{Matrix Algebra}
+\begin{outline}
+\end{outline}
+
+\begin{card}
+    \subsection{Matrix Operations}
+
+    \begin{compactdesc}
+    \item[matrix] has $m$ rows and $n$ columns, denoted as $m \times n$.
+        The element in the ith row and jth column is represented by $A_{ij}$.
+    \item[zero matrix] all entries are zero
+    \item[identity matrix] all entries on the diagonal are one and the rest are
+        zero.
+    \item[sane addition and scalar] multiplication rules for two matrices
+        $A,B$ and two scalars $r,s$.
+        \begin{compactenum}
+        \item $A + B = B + A$
+        \item $( A + B) + C = A + (B + C)$
+        \item $A + 0 = A$
+        \item $r(A + B) = rA + rB$
+        \item $(r + s)A = rA + sA$
+        \item $r(sA) = (rs)A$
+        \end{compactenum}
+    \item[proofs] by decomposing matrices into scalars $A_{ij}$ or column vectors
+        $a_i$. Show entries are equal and matrices are same size.
+    \item[multiplication goal] could have element-wise multiplication, but
+        it is better to have $A(Bx) = (AB)x$, composable matrix-vector
+        multiplication.
+    \item[matrix multiplication] only works for two matrices, $A$ of size
+    $m \times n$ and $B$ of size $n \times p$. The result has size $n \times p$.
+    Defined as $AB = \begin{bmatrix}Ab_1 & Ab_2 & \cdots & Ab_p \end{bmatrix}$.
+    \item[row-column rule] for computing $AB$. The $(i,j)$ entry in
+        $AB$ is $(AB)_{ij} = \sum^n_{k=1} A_{ik}B_{kj}$ where $n$ is the
+        shared size.
+    \item[WARNINGS]
+    \item[Not commutative] $AB \neq BA$.
+    \item[No cancellation] laws $\lnot(AB = AC \implies B = C)$ unless $A$ is
+        invertible.
+    \item[Zero is not the only] matrix that can create zero
+        $AB = 0 \not\implies A = 0 \lor B = 0$.
+    \item[powers] $A^k = A \cdots A$, the matrix $A$ multiplied by itself
+        $k$ times. $A^0 = I$ so that $A^0x = x$.
+    \item[transpose] $A^T$ is the $n \times m$ transpose of the $m \times n$
+        sized matrix A. The entries are defined: $A^T_{ij} = A_{ji}$.
+    \end{compactdesc}
+\end{card}
+\begin{card}
+    \begin{theorem}[Matrix Multiplication rules]
+        Let $A$ be an $m \times n$ matrix and let $B, C$ have sizes for which
+        these sums and products are defined.
+        \begin{compactenum}
+        \item associative: $(AB)C = A(BC)$
+        \item left distributive: $A(B + C) = AB + AC$
+        \item right distributive: $(B + C)A = BA + CA$
+        \item $r(AB) = (rA)B = A(rB)$ for any scalar $r$
+        \item identity elements: $I_mA = A = AI_n$.
+        \end{compactenum}
+    \end{theorem}
+    \begin{theorem}[Transpose rules]
+        Let $A, B$ be matrices whose sizes are appropriate for the following
+        sums and products.
+        \begin{compactenum}
+        \item $(A^T)^T = A$
+        \item $(A + B)^T = A^T + B^T$
+        \item For any scalar $r, (rA)^T = rA^t$
+        \item $(AB)^T = B^TA^T$
+        \end{compactenum}
+    \end{theorem}
+
+\end{card}
+
+
+\begin{card}
+    \subsection{Inverse of a Matrix}
+
+    \begin{compactdesc}
+    \item[inverse] of a matrix $A^{-1}$ is a unique element which exists only
+        for certain square matrices. Properties: $AA^{-1} = A^{-1}A = I$.
+    \item[invertible] matrices have an inverse. Their determinant is not zero.
+        Also called nonsingular.
+    \item[noninvertible] matrices are called singular or degenerate.
+    \item[inverse of $\R^2$] matrix is easy to calculate
+    \item[proof of Th. \ref{th-inv-soln}]
+        Take any $b \in \R^n$. The solution $x = A^{-1}b$ exists. Simply
+        substitute to see. $x$ is the only solution. Let $u$ be another
+        arbitrary vector. If $Au = b$, then $Iu = A^{-1}b$ and $u = A^{-1}b$.
+    \item[Row reduction] is faster than finding the inverse of a matrix.
+        Except, perhaps, in $2\times2$ matrices.
+    \item[Elementary matrix] $E$, an identity matrix after a single elementary row
+        operation.
+    \item[Inverse of elementary] matrix is the same matrix that transforms
+        $E$ back into $I$. Generalized into Th. \ref{th-gen-inverse}
+    \item[Algorithm for] finding the inverse of $A$. Row reduce the matrix
+        $\begin{bmatrix}A & I\end{bmatrix}$. If the result has form
+        $\begin{bmatrix}I & A^{-1}\end{bmatrix}$, then $A$ has an inverse.
+        Otherwise, there is none.
+    \item[Alternative algorithm] for finding one or two columns of $A^{-1}$.
+        The columns of $A^{-1}$ are the solutions of the system
+        $Ax = e_1; Ax = e_2; \cdots Ax = e_n$. So, to find the pth column
+        of the inverse, simply solve $Ax = e_p$.
+    \end{compactdesc}
+\end{card}
+\begin{card}
+    \begin{theorem}[Inverse of 2 by 2]
+    Let  $A = \begin{bmatrix}a & b \\ c & d\end{bmatrix}$.
+    If its determinant $ad - bc \neq 0$, then the inverse of $A$ is
+    $A^{-1} = (1/(ad - bc))\begin{bmatrix}d & -b \\ -c & a\end{bmatrix}$.
+    If the determinant is zero, then $A$ is not invertible.
+    The \textbf{determinant} of this matrix is $\det A = ad - bc$.
+    \end{theorem}
+
+    \begin{theorem}[Solutions if invertible]\label{th-inv-soln}
+        If $A$ is an invertible $n \times n$ matrix, then for each $b \in \R^n$,
+        the equation $Ax = b$ has the unique solution $x = A^{-1}b$.
+    \end{theorem}
+
+    \begin{theorem}[Rules and the Transpose]
+    Assume $A$ is invertible.
+    Assume $B$ is invertible and the same size as $A$.
+    \begin{compactenum}
+    \item $A^{-1}$ is invertible.
+    \item $(A^{-1})^{-1} = A$.
+    \item $(AB)^{-1} = B^{-1}A^{-1}$.
+    \item $(A^T)^{-1} = (A^{-1})^T = A^{-T}$.
+    \item The product of $n \times n$ invertible matrices is invertible and
+        it is the product of their inverses in the reverse order.
+    \end{compactenum}
+    \end{theorem}
+
+    \begin{theorem}[Inverse of a matrix]\label{th-gen-inverse}
+        An $n\times n$ matrix $A$ is invertible iff $A$ is row equivalent to
+        $I_n$. The same sequence that transforms $A$ to $I_n$ also transforms
+        $I_n$ to $A^{-1}$.
+    \end{theorem}
+\end{card}
+
+
+\begin{card}
+    \subsection{Characterizations of Invertible Matrices}
+
+    \begin{theorem}[Invertible Matrix Theorem]
+    $A$ is a square $n \times n$ matrix. These statements are logically
+    equivalent:
+    \begin{compactenum}
+    \item $A$ is an invertible matrix.
+    \item $A$ is row equivalent to $I_n$.
+    \item $A$ has $n$ pivot columns.
+    \item The equation $Ax = 0$ has only the trivial solution.
+    \item The columns of $A$ form a linearly independent set.
+    \item The linear transformation $x \mapsto Ax$ is one-to-one.
+    \item The equation $Ax = b$ has at least one solution for each $b \in \R^n$.
+    \item The columns of $A$ span $\R^n$.
+    \item The linear transformation $x \mapsto Ax$ maps $\R^n$ onto $\R^n$.
+    \item There is a pair of matrices $C,D$ such that $CA = I_n$ and $AD = I_n$.
+    \item $A^T$ is an invertible matrix.
+    \end{compactenum}
+    \end{theorem}
+
+    \begin{compactdesc}
+    \item[IMT] separates square matrices into two disjoint classes.
+    \item[Only square matrices] can be treated with the IMT
+    \item[Fact] if $AB = I_n$ then $A, B$ are both invertible with
+        $B = A^{-1}; A = B^{-1}$.
+    \item[Singular, degenrate] matrices are not invertible.
+    \end{compactdesc}
+
+
+    \begin{theorem}[Invertible Transformation]
+        Let $T : \R^n \to \R^n$ with standard matrix $A$. Then $T$ is
+        invertible iff $A$ is an invertible matrix. If so, then $S(x) = A^{-1}x$
+        satisfies $T(S(x)) = x$ and $S(T(x)) = x$.
+    \end{theorem}
+\end{card}
+
+
+\begin{card}
+    \subsection{Partitioned Matrices}
+    Matrices can be split into chunks to alleviate the burden of
+    multiplying large matrices.
+
+    % \begin{compactdesc}
+    % \item[boss]
+    % \end{compactdesc}
+% \end{card}
+%
+%
+% \begin{card}
+    \subsection{Matrix Factorization}
+    Matrices can be factored into a pair of upper and lower triangular matrices
+    $A = LU$.
+
+    % \begin{compactdesc}
+    % \item[boss]
+    % \end{compactdesc}
+\end{card}
+
+
+\begin{card}
+    \subsection{Leontief Input-Output Model}
+
+    \begin{compactdesc}
+    \item[Production vector] $x$ lists the outputs of each of $n$ sectors of
+        an economy
+    \item[Unit consumption vector] for each sector, lists the inputs from
+        other sectors to produce one unit of output.
+    \item[Consumption matrix] $C$, is a matrix composed of all the unit cons.
+        vectors.
+    \item[Final demand] $d$, lists the amount of goods demanded by the
+        nonproductive part of economy.
+    \item[Production equation] $x = Cx + d$ or $(I - C)x = d$ or if
+        $I - C$ is invertible, $x = (I - C)^{-1}d$.
+    \item[Modification] If the demand changes to $d + \Delta d$, then the
+        economy must shift by $\Delta x = (I - C)^{-1}\Delta d$.
+    \item[Formula for $(I - C)^{-1}$] is similar to the geometric series:
+        $(I - C)^{-1} = \sum^\infty_{n=0} C^n$.
+    \item[Approximation] If $C^m \to 0$ quickly enough, then this approximation
+        applies: $(I - C)^{-1} \approx \sum^m_{n=0} C^n$.
+    \item[Example] manufacting is $c_1$, big agri is $c_2$, and services is
+        $c_3$. If it takes 50 units from other parts of manufacturing,
+        20 units from agriculture, and 10 units from services to produce 100
+        units of manufacturing then:
+        \[
+            c_1 = \begin{bmatrix} 0.5 \\ 0.2 \\ 0.1 \end{bmatrix}
+            \quad
+            C = \begin{bmatrix} 0.5 & 0.4 & 0.2 \\ 0.2 & 0.3 & 0.1 \\ 0.1 & 0.1 & 0.3 \end{bmatrix}
+            \quad
+            d = \begin{bmatrix} 50 \\ 30 \\ 20 \end{bmatrix}
+        \]
+        This system can be solved to get $x = \begin{bmatrix} 226 \\ 119 \\ 78 \end{bmatrix}$.
+    \end{compactdesc}
+\end{card}
+
+
+\begin{card}
+    \subsection{Applications to Computer Graphics}
+    So cool!
+    3D to 2D projection * rotation * translation * scale * crappy toyota vertices $\mapsto$ pretty toyota vertices
+
+    % \begin{compactdesc}
+    % \item[boss]
+    % \end{compactdesc}
+\end{card}
+
+

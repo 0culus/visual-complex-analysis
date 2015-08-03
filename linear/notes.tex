@@ -1,0 +1,87 @@
+\documentclass[letterpaper,9pt]{article}
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true]%
+           {microtype}
+\usepackage[bookmarks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+
+% sans serif
+\renewcommand*{\familydefault}{\sfdefault}
+
+\usepackage{amsmath, mathtools, amssymb}
+
+% compact lists (compactitem, compactenum, compactdesc)
+\usepackage{paralist}
+
+% nicer tables
+\usepackage{booktabs}
+
+% sans serif math
+% breaks with itemize....
+%\usepackage{arevtext,arevmath}
+
+% text columns
+\usepackage{multicol}
+
+% frames around text
+\usepackage{mdframed}
+
+% section style
+\usepackage{sectsty}
+
+% margins
+\usepackage[top=0.25in, bottom=0.25in, left=0.2in, right=0.2in]{geometry}
+
+% per-section toc
+\usepackage[insection]{minitoc}
+
+\usepackage{thmtools}
+
+\sectionfont{\rmfamily}
+\subsectionfont{\rmfamily\centering}
+
+\newenvironment{outline}[1][2]% % number of columns defaults to 2
+{\bgroup \footnotesize \begin{multicols}{#1}}%
+{\end{multicols} \egroup}
+
+\newenvironment{card}[1][2]% % number of columns defaults to 2
+{\bgroup \begin{mdframed} \begin{multicols}{#1}}%
+{\end{multicols} \end{mdframed} \egroup}
+
+\newcommand{\bm}[1]{\mathbf{#1}}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\PP}{\mathbb{P}}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\inner}{\langle}{\rangle}
+
+\newtheorem{theorem}{Th.}[section]
+
+\begin{document}
+
+\begin{center} {\Large
+    {\bf Linear Algebra}
+\\  Hugo Rivera}
+\\  Math 254, NMT. Summer 2015
+\end{center}
+
+\dosecttoc
+\setlength{\mtcindent}{5pt}
+\begin{multicols}{2}
+
+\tableofcontents
+\listoftheorems[ignoreall,show={theorem}]
+\end{multicols}
+
+\input{ch1.tex}
+\input{ch2.tex}
+\input{ch3.tex}
+\input{ch4.tex}
+\input{ch5.tex}
+\input{ch6.tex}
+
+\end{document}

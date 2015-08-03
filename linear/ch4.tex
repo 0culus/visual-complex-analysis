@@ -1,0 +1,295 @@
+\section{Vector Spaces}
+\begin{outline}
+
+\end{outline}
+
+\begin{card}
+    \subsection{Vector Spaces and Subspaces}
+
+    \begin{theorem}[Vector Space Axioms]
+    A nonempty set $V$ with two binary operations called
+    addition and multiplication by scalars (in this case, real numbers).
+    Axioms must hold for all $u,v,w \in V$ and $c,d \in \R$:
+    \begin{compactenum}
+    \item $u + v \in V$
+    \item $u + v = v + u$
+    \item $u + (v + w) = (u + v) + w$
+    \item There exists a zero vector such that $u + 0 = u$
+    \item There exist inverse vectors $-v$ such that $v + (-v) = 0$
+    \item $cu \in V$
+    \item $c(u + v) = cu + cv$
+    \item $(c + d)u = cu + du$
+    \item $c(du) = (cd)u$
+    \item There exists a vector such that $1u = u$
+    \end{compactenum}
+    \end{theorem}
+    \end{card}
+
+    \begin{card}
+    \begin{compactdesc}
+    \item[Many properties] can be shown using the ten axioms
+    \item[Negative] shorthand $-u$ = $(-1)u$.
+    \item[Examples] polynomials of n-degree $\mathbb{P}_n$, $\R^n$, $\Z_n$, continuous functions
+        % signals!!!
+    \item[Subspace] of a vector space $V$ is a subset $H$ of $V$ with:
+    \begin{compactenum}
+    \item $0 \in H$
+    \item For all $u, v \in H$, $u + v \in H$
+    \item For every scalar $c$ and vector $v \in H$, $cv \in H$
+    \end{compactenum}
+
+    \item[Subspaces are also] vector spaces
+    \item[Zero subspace] $\{0\}$ a trivial subspace of any vector space
+    \item[Example subspaces] polynomials of degree $\leq n$ in vector space $\mathbb{P}_n$,
+        polynomials are a subspace of the vector space formed by continuous functions
+    \item[Linear combination] of vectors in vector space $V$ is
+        $c_1v_1 + c_2v_2 \in V$ for any scalars $c_1, c_2$.
+    \item[Span] of a set of $n$ vectors is the set formed by taking all scalars
+    $c_1, \dotsc, c_n$ and creating linear combinations of vectors
+    Span $\{v_1, \dotsc, v_n \} = c_1 v_1 + \dotsb + c_n v_n$.
+    \item[Synonyms] span of vectors is the \textbf{subspace spanned or generated} by
+        the vectors. A \textbf{generating set} for a subspace is a set of vectors
+        such that they span the subspace.
+    \end{compactdesc}
+
+    \begin{theorem}
+    If $v_1, \dotsc, v_n$ are in a vector space $V$ then Span $\{v_1, \dotsc, v_n \}$
+    forms a subspace of $V$.
+    \end{theorem}
+\end{card}
+
+
+\begin{card}
+    \subsection{Null Spaces, Column Spaces, Linear Transformations}
+
+    \begin{compactdesc}
+    \item[Subspace interpretation] either arise as solutions to a system
+        of homogeneous linear equation, or as the set of linear combinations
+        of some vectors.
+    \item[Null space] of an $m \times n$ matrix $A$ is the set of all
+        solutions to $Ax = 0$. Dynamic description: all $x \in \R^n$ mapped
+        into $0 \in \R^m$ by the mapping $x \mapsto Ax$.
+        \textbf{Implicitly} defined.
+        $\text{Nul } A = \{x | x \in \R^n \text{ and } Ax = 0 \}$.
+    \end{compactdesc}
+    \begin{theorem}%
+        [Null space is subspace]\label{th-null-sub}
+    The null space of an $m \times n$ matrix is a subspace of $\R^n$.
+    \end{theorem}
+    \begin{compactdesc}
+    \item[Proof of Th. \ref{th-null-sub}]
+        % TODO
+    \item[Explicit description] of a null space is found by row reducing $A$
+        and finding the general solution to $Ax = 0$.
+    \item[Solution set] formed by a spanning set is automatically
+        linearly inependent because free variables are the weights on the
+        vectors.
+    \item[Number of free variables] is the number of vectors in the
+        null space.
+    \item[Column space] of an $m \times n$ matrix $A$ is the set of all
+        linear combinations of the columns of $A$.
+        $\text{Col } A = Span \{a_1, \dotsc, a_n\}$.
+    \item[About null space]:
+
+        \begin{compactenum}
+        \item A subspace of $\R^n$
+        \item Implicitly defined
+        \item Easy to tell if vector is present, check $Ab = 0$
+        \item Equal to $\{0\}$ iff $Ax = 0$ has only the trivial solution.
+        \end{compactenum}
+    \item[About column space]:
+
+        \begin{compactenum}
+        \item A subspace of $\R^m$
+        \item Explictly defined
+        \item Hard to tell if vector is present, must row reduce $[A \quad v]$
+        \item Equal to $\R^m$ iff $Ax = b$ has a solution for every $b \in \R^m$.
+        \end{compactenum}
+    \item[Linear transformation] $T$ from a vector space $V$ to a vector space
+        $W$ assigns each vector $x \in V$ to a vector $T(x) \in W$.
+        Linear if: $T(u + v) = T(u) + T(v)$ and if $T(cu) = cT(u)$ for all
+        vectors $u,v \in V$ and all scalars $c \in \R$.
+    \item[Kernel] of a transformation $T$ is set of all vectors in $V$ that
+        map to $0 \in W$. Solutions to $T(x) = 0$.
+    \item[Range] of a transformation $T$ is set of all vectors in $W$ with form
+        $T(x)$ for some $x \in V$.
+    \item[Example] differentiation is a linear transformation of
+        real-valued continuous functions.
+    \end{compactdesc}
+\end{card}
+
+
+\begin{card}
+    \subsection{Linearly Independent Sets; Bases}
+
+    \begin{theorem}
+    A set of two or more vectors with $v_1 \neq 0$ is
+    linearly dependent iff some $v_j$ with $j > 1$ is a linear combination
+    of the other vectors.
+    \end{theorem}
+
+    \begin{compactdesc}
+    \item[Linear independence] Vectors $v$ are linearly independent
+        if only $c_i \neq 0$ can satisfy
+        the equation: $c_1 v_1 + \dotsb + c_p v_p = 0$.
+    \item[Linear dependence relation] formed when $c_i \neq 0$ for some $c_i$.
+    \item[Basis] for a subspace $H$ of a vector space $B$ is formed by the
+        set $\mathcal{B} = \{b_1, \dotsc, b_p \}$ if
+        \begin{compactenum}
+        \item $\mathcal{B}$ is a linearly independent set
+        \item Span $\mathcal{B} = H$.
+        \end{compactenum}
+    \item[Standard basis] for $\R^n$ is the set $\{e_1, \dotsc, e_n \}$.
+    \item[Standard basis] for $\PP_n$ is the set $\{ 1, t, t^2, \dotsc, t^n \}$.
+    \end{compactdesc}
+
+    \begin{theorem}
+    Let $S = \{v_1, \dotsc, v_n \}$ be a set in $V$ and let Span $S = H$.
+    \begin{compactenum}
+    \item If one vector in $S$ is a linear combination of the other vectors
+        in $S$, then the set formed by removing this vector still spans $H$.
+    \item If $H \neq \{0\}$, some subset of $S$ is a basis for $H$
+    \end{compactenum}
+    \end{theorem}
+
+    \begin{compactdesc}
+    \item[Basis for Null Space] is easy, the null space is its own basis.
+    \item[Rowops] Elementary row operations on a matrix do not affect the
+        linear dependence relations among the columns of the matrix.
+    \item[Proof of Th.~\ref{th-pivot-basis}]
+        % TODO
+    \item[Two views] a basis can be
+    \begin{compactenum}
+    \item linearly independent set (as large as possible)
+    \item spanning set (as small as possible)
+    \end{compactenum}
+
+    \end{compactdesc}
+    \begin{theorem}\label{th-pivot-basis}
+    The pivot columns of a matrix $A$ form a basis for Col $A$.
+    \end{theorem}
+\end{card}
+
+
+
+\begin{card}
+    \subsection{Coordinate Systems}
+
+    \begin{theorem}[Unique Representation Theorem]
+    Let $\mathcal{B} = \{b_1, \dotsc, b_n\}$ be a basis for a vector space
+    $V$. Then for each $x \in V$, there exist unique scalars
+    $[x]_\mathcal{B} = \begin{bmatrix} c_1 \\ \vdots \\ c_n \end{bmatrix}$
+    such that
+    $$
+        x = c_1b_1 + \dotsb + c_n b_n
+    $$
+    \end{theorem}
+    \begin{theorem}[Change of coord is 1-to-1, linear]
+    Let $\mathcal{B}$ be a basis for a vector space $V$.
+    Then the coordinate mapping $x \mapsto [x]_\mathcal{B}$ is a
+    1-to-1 linear transformation from $V$ onto $\R^n$
+    \end{theorem}
+
+    \begin{compactdesc}
+    \item[Coordinates] of $x$ relative to the basis $\mathcal{B}$ are the
+        weights $c_1, \dotsc, c_n$.
+    \item[Change of coord.s matrix] $P_\mathcal{B} = [b_1 \cdots b_n]$.
+    \item[Change of coordinates] in $\R^n$. If there is another basis for
+        $\R^n$, then $x = P_\mathcal{B}[x]_\mathcal{B}$.
+    \item[Isomorphism] between $\R^n$ and any $n$ dimensional subspace is
+        defined by the transform $x \mapsto [x]_\mathcal{B}$.
+    \end{compactdesc}
+\end{card}
+
+
+\begin{card}
+    \subsection{Dimensions of a Vector Space}
+
+    \begin{theorem}[Dimension and Dependence]
+    If a vector space $V$ has a basis with $n$ vectors, then any set in
+    $V$ containing more than $n$ vectors must be linearly dependent.
+    \end{theorem}% proof
+
+    \begin{theorem}[Size of Every Basis]% proof
+        If a vector space $V$ has a basis of $n$ vectors,
+        then every basis of $V$ has $n$ vectors.
+    \end{theorem}% proof
+    \begin{compactdesc}
+    \item[Finite dimensional] vector spaces are spanned by a
+        finite number of vectors. If it's not, it is \textbf{infinite dimensional}.
+    \item[Zero vector space] $\{0\}$ is defined to be zero
+    \item[Example] $\dim = \infty$, the set of all polynomials
+    \item[Dimension of null] space is number of free variables
+    \item[Dimension of column] space is number of basic variables
+    \end{compactdesc}
+
+    \begin{theorem}
+    Let $H$ be a subspace of a finite dimensional vector space $V$.
+    Any linearly independent set can be expanded (add more linearly independent
+    vectors) to form a basis for $H$.
+
+    Also, $H$ is finite dimensional and:
+    $$\dim H \leq \dim V$$
+    \end{theorem}
+    \begin{theorem}[Basis Theorem]
+    Let $V$ be a set with $p$ dimensions.
+    Any set of $p$ linearly independent vectors forms a basis for $V$.
+
+    Any set of $p$ vectors that span $V$ form a basis for $V$.
+    \end{theorem}
+\end{card}
+
+
+\begin{card}
+    \subsection{Rank}
+
+    \begin{theorem}\label{th-row-rowequiv}
+    Two row equivalent matrices $A$ and $B$ share the same row space.
+
+    If $B$ is in echelon form, the nonzero rows of $B$ form a basis for the
+    row space of $A$ and for $B$.
+    \end{theorem}
+
+    \begin{compactdesc}
+    \item[Row space] set of all linear combinations of the row vectors of a
+        matrix
+    \item[Th. \ref{th-row-rowequiv}]
+    \item[Basis for Col] space of a matrix: pivot columns of the matrix
+    \item[Basis for Row] space of a matrix: rows a row equivalent matrix
+        in echelon form
+    \item[Basis for Nul] space of a matrix: vectors in the vector form of
+        the general solution to $Ax = 0$.
+    \item[Rank] of $A = \dim$ Col $A$.
+    \item[Dimension of Row] space $= \dim$ Col $A = \dim$ Col $A^T$
+    \end{compactdesc}
+    \begin{theorem}[The Rank Theorem]\label{th-rank}
+    The dimensions of the column space and the row space of an $m \times n$
+    matrix $A$ are the same. This common dimension is equal to the
+    number of pivot positions in $A$ and
+    $$ \text{rank } A + \dim \text{Nul } A = n$$
+    \end{theorem}
+    \begin{compactdesc}
+    \item[Proof of Th. \ref{th-rank}]
+        % TODO
+    \item[Example] if $A$ is a $7 \times 9$ matrix, what's is rank?
+
+        The equation $r + 2 = 9$ must be satisfied, so the rank is $7$.
+    \item[Example] Could a $6\times9$ matrix have $\dim$ Nul $A = 2$?
+
+        No. If it did, then the rank should be $7$, but there's only $6$ columns!
+    \item[Proof of IMT cont. \ref{th-imt-rank}]
+        % TODO
+    \end{compactdesc}
+    \begin{theorem}[Rank and IMT, cont.]\label{th-imt-rank}
+    Let $A$ be an $n\times n$ matrix, these statements are equivalent to the
+    statement that $A$ is an invertible matrix:
+    \begin{compactenum}
+    \item The columns of $A$ form a basis for $\R^n$
+    \item Col $A = \R^n$.
+    \item $\dim \text{Col } A = n$
+    \item rank $A = n$
+    \item Nul $A = \{0\}$
+    \item $\dim$ Nul $A = 0$
+    \end{compactenum}
+    \end{theorem}
+\end{card}

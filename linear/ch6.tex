@@ -1,0 +1,354 @@
+\section{Orthogonality and Least Squares}
+\begin{outline}
+\end{outline}
+
+\begin{card}
+    \subsection{Inner Product, Length, Orthogonality}
+
+    \begin{compactdesc}
+    \item[Inner Product] $u, v$ are $n \times 1$ matrices, their
+        inner product is $u^Tv$, a scalar.
+        AKA \textbf{dot Product}.
+    \item[Length or norm of a vector] defined by $\norm{v} = \sqrt{v \cdot v}$.
+        Property: $\norm{cv} = c\norm{v}$.
+    \item[Unit Vector] has norm $1$. \textbf{Normalizing} a vector is done by
+        dividing by its norm $u = v\norm{v}$, then $\norm{u} = 1$.
+    \item[Distance] between vectors $u$ and $v$ is given by $\norm{u - v}$.
+    \item[Orthogonal vectors] two vectors are orthogonal, or perpendicular if
+        $u \cdot v = 0$. This is equivalent to having a $90^\circ$ angle
+        between them.
+    \item[Vector $\bot$ subspace] if the vector is perpendicular to every
+        vector in the subspace. Equivalently, it is perpendicular to every basis
+        vector of the subspace.
+    \item[Orthogonal complement] let $W$ be a subspace of $\R^n$.
+        The orthogonal complement of $W$ is $W^\bot$ pronounced ``W perp.''
+        It is defined as the set of all vectors perpendicular to the vectors in
+        $W$, $W^\bot = \{v \bot W | v \in \R^n \}$.
+    \item[New Subspace]
+        If $W$ is a subspace of $\R^n$, then $W^\bot$ is a subspace of $\R^n$.
+    \item[Angle] between two vectors $u$ and $v$ is $\theta$ and found using:
+        $\cos \theta = u \cdot v / \norm{u}\norm{v}$.
+        This formula works for higher dimensions, in statistics $\cos\theta$
+        is called the correlation coefficient between two vectors.
+    \end{compactdesc}
+
+    \begin{theorem}[Inner Product Algebra]
+    Let $u,v,w \in \R^n$ and let $c \in \R$. Then
+    \begin{compactenum}
+    \item $u \cdot v = v \cdot u$
+    \item $(u + v) \cdot w = u \cdot w + v \cdot w$
+    \item $(cu)\cdot v = u \cdot (cv) = c(u \cdot v)$
+    \item $u \cdot u \geq 0$ and $u \cdot u = 0$ iff $u = 0$
+    \end{compactenum}
+    \end{theorem}
+
+    \begin{theorem}[Pythagorean Theorem]
+    Two vectors $u$ and $v$ are orthogonal iff
+    $\norm{u + v}^2 = \norm{u}^2 + \norm{v}^2$.
+    \end{theorem}
+
+    \begin{theorem}[Orthog. Complement of a Row Space]
+    Let $A$ be an $m \times n$ matrix. Then
+        $$ (\text{Col } A)^\bot = \text{Nul } A^T
+    \qquad (\text{Col } A^T)^\bot = \text{Nul } A $$
+    \end{theorem}
+
+
+\end{card}
+
+
+\begin{card}
+    \subsection{Orthogonal Sets}
+
+    \begin{theorem}[Orthog. Set, Linearly Independent]
+    If $S$ is an orthogonal set of nonzero vectors in $\R^n$ then $S$
+    is linearly independent and a basis for the subspace spanned by $S$.
+    \end{theorem}
+
+    \begin{compactdesc}
+    \item[Orthogonal Set] $\{u_1, \dotsc, u_p\}$
+        is formed if each element is perpendicular to every other element.
+        That is, $u_i \cdot u_j = 0$ if $i \neq j$.
+    \item[Orthogonal Basis] A basis for a subspace of $\R^n$ that is also
+        an orthogonal set.
+    \item[Orthogonal Projection] given a vector $u$ it is possible to
+        decompose a vector $y$ into two components:
+        $y = \^y + z$ where $\^y = \alpha u$ and $z \bot u$.
+        The vector $\^y$ is found in terms of $u$, $\^y = \dfrac{y\cdot u}{u \cdot u}u$.
+        The vector $z$ is easily found, it may be the zero vector.
+    \item[Geometric Interpretation of Th \ref{th-ortho-basis}]
+        Theorem $\ref{th-ortho-basis}$ decomposes a vector into a sum of
+        orthogonal projections onto one-dimensional subspaces (lines).
+        Like graph paper with a rectangular grid.
+    \item[Orthonormal Sets] an orthogonal set composed of unit vectors.
+        Very important.
+    \item[Orthonormal basis] an orthogonal set forms such a basis for the
+        subspace spanned by the set.
+    \item[Orthogonal Matrix] a matrix with columns that form an orthonormal set.
+        Notice not an orthogonal set (not as useful).
+    \item[Rows of an orthogonal] matrix also form an orthonormal set.
+    \item[Meaning of Th \ref{th-ortho-algebra}] multiplication by the matrix
+        $U$ preserves length and angle of vectors.
+    \end{compactdesc}
+
+    \begin{theorem}[Orthog. Basis and Linear Combo.]\label{th-ortho-basis}
+    Let $\{u_1, \dotsc, u_p\}$ be an orthogonal basis for a subspace $W$ of
+    $\R^n$. Then the weights for each $y \in W$ in the linear combination
+    $y = c_1u_1 + \dotsb + c_pu_p $
+    are given by
+    $$c_j = \frac{y \cdot u_j}{u_j \cdot u_j}$$
+    \end{theorem}
+
+    \begin{theorem}[Orthogonal Columns]
+    An $m \times n$ matrix $U$ has orthonormal columns iff $U^TU = I$.
+    \end{theorem}
+
+    \begin{theorem}[Algebra of Orthonormal Columns]\label{th-ortho-algebra}
+    Let $U$ be an $m \times n$ matrix with orthonormal columns and let $x, y \in \R^n$.
+    Then
+    \begin{compactenum}
+    \item $\norm{Ux} = \norm{x}$
+    \item $(Ux)\cdot(Uy) = x\cdot y$
+    \item $(Ux) \cdot (Uy) = 0$ iff $x \cdot y = 0$
+    \end{compactenum}
+    \end{theorem}
+\end{card}
+
+
+
+\begin{card}
+    \subsection{Orthogonal Projections}
+
+    \begin{theorem}[Orthogonal Decomposition Theorem]\label{th-ortho-decomp}
+    Let $W$ be a subspace of $\R^n$ with an orthogonal basis
+    $\{u_1, \dotsc, u_p\}$.
+    Then each $y \in \R^n$ can be written uniquely as
+    $$y = \^y + z$$
+    where $\^y \in W$, $z \in W^\bot$, $z = y - \^y$, and
+    $$
+        \^y = \frac{y^Tu_1}{u_1^Tu_1}u_1 + \dotsb + \frac{y^Tu_p}{u_p^Tu_p}u_p
+    $$
+    \end{theorem}
+
+    \begin{compactdesc}
+    \item[Vector decomposition] a vector can be decomposed into a sum of
+        vectors, one in $W$ and one in $W^\bot$.
+    \item[Orthogonal Projection] of $y$ onto $W$: the vector $\^y$ often
+        written as $\text{proj}_W y$.
+    \item[Geometric Interpretation of] Orthogonal Projections: an orthogonal
+        projection of a vector is the sum of its projectins onto
+        mutually orthogonal one-dimensional subspaces.
+    \item[Identity] If $y \in W$
+        then $y = \text{proj}_W y$.
+    \item[Orthogonal matrix] has \textbf{orthonormal} columns
+    \end{compactdesc}
+
+    \begin{theorem}[The Best Approximation]
+    Let $W$ be a subspace of $\R^n$, $y \in \R^n$ and $\^y = \text{proj}_W y$.
+    Then $\^y$ is the closest point in $W$ to $y$; in the sense that for
+    all $v\in \R^n$, $v \neq y$:
+    $$ \norm{y - \^y} < \norm{y - v}$$
+    \end{theorem}
+
+    \begin{theorem}[Orthonormal Basis and Projections]
+    If $\{u_1, \dotsc, u_p\}$ is an orthonormal basis for a subspace $W$ of $\R^n$,
+    then
+    $$\text{proj}_W y = (y^Tu_1)u_1 + \dotsb + (y^Tu_p)u_p$$
+    If $U = [u_1 \quad \cdots \quad u_p ]$, then for all $y \in \R^n$:
+    $$\text{proj}_W y = UU^T y$$
+    \end{theorem}
+
+\end{card}
+
+
+\begin{card}
+    \subsection{Gram-Schmidt Process}
+
+    \begin{theorem}[The Gram-Schmidt Process]
+    Let $W$ be a subspace of $\R^n$ and assume it has a basis $\{x_1, \dotsc, x_p\}$.
+    Let
+    \begin{align*}
+    v_1 &= x_1
+    \\
+    v_2 &= x_2 -  \frac{x_2^Tv_1}{v_1^Tv_1}v_1
+    \\
+    \vdots&
+    \\
+    v_p &= x_p - \frac{x_p^Tv_1}{v_1^Tv_1}v_1 - \dotsb
+              - \frac{x_p^Tv_{p-1}}{v_{p-1}^Tv_{p-1}}v_{p-1}
+    \end{align*}
+    The set $\{v_1, \dotsc, v_p\}$ is an orthogonal basis for $W$
+    and $\text{Span } \{v_1, \dotsc, v_p\} = \text{Span } \{x_1, \dotsc, x_p\} = W$.
+
+    \end{theorem}
+
+    \begin{compactdesc}
+    \item[A Simple Algorithm] for producing an orthogonal basis for
+        a nonzero subspace of $\R^n$.
+        Take two linearly independent vectors, subtract the projection
+        $z = v_2 - \text{proj}_{v_1}v_2$
+        to get another linearly independent but now orthogonal vector.
+    \item[Orthonormal Bases] an orthogonal basis composed of normalized vectors.
+    \item[QR Factorization of Matrices] finding an orthogonal basis for an
+        $m \times n$ matrix using the Gram-Schmidt process is similar to
+        factoring $A = QR$ where $Q$ is orthogonal and $R$ is square and upper triangular.
+    \item[Finding $R$] because $Q$ is orthogonal $R = Q^{-1}A = Q^TA$.
+    \end{compactdesc}
+
+    \begin{theorem}[QR Factorization]
+    If $A$ is an $m \times n$ matrix with linearly independent columns, then
+    $A$ can be factored as $A = QR$ where $Q$ is an $m \times n$ matrix
+    whose columns form an orthonormal basis for Col $A$
+    and $R$ is an $n \times n$ upper triangular invertible matrix
+    with positive entries on its diagonal.
+    \end{theorem}
+
+\end{card}
+
+
+\begin{card}
+    \subsection{Least-Squares Problems}
+
+    \begin{compactdesc}
+    \item[Inconsistent systems] arise often in applications. An
+        approximate solution is often demanded.
+    \item[Least-squares solution] of $Ax = b$ is an $\^x \in \R^n$ such that
+        $\norm{b - A\^x} \leq \norm{b - Ax}$ for all $x \in \R^n$.
+        Note $b \in \R^m$ and $A$ is an $m \times n$ matrix.
+    \item[Least squares error] $\norm{b - \^b}$
+    \item[Soln. of General Least-Squares] Problem.
+        Let $Ax = b$ be an inconsistent system.
+        Let $\^b = \text{proj}_{\text{Col }A} b$.
+        Because $\^b$ is in the column space of $A$, there exist a solution
+        $\^x$ to the equation $A\^x = \^b$.
+    \item[Optimal] This point $\^b$ is the closest point possible to $b$.
+    \item[Proof of Th. \ref{th-least-normal}] By Th~\ref{th-ortho-decomp}
+        $b - A\^x$ is in $(\text{Col } A)^\bot$.
+        Therefore $a_j^T(b - A\^x) = 0$ for every column $a_j$ of $A$.
+        Since $a_j^T$ is a column of $A^T$,
+        $A^Tb - A^TA\^x = 0$ and
+        $A^Tb = A^TA\^x$. $\square$
+
+        Conversely, suppose $\^x$ satisfies $A^TA\^x = A^tb$.
+        % TODO finish
+    \item[Normal Equations] of the system $Ax = b$ is this: $A^TAx = A^Tb$.
+    \item[QR Factorization] of $A$ can give more reliable results when using
+        a machine.
+    \end{compactdesc}
+
+    \begin{theorem}[Least-Squares and Normal Equations]\label{th-least-normal}
+    The set of least-squares solutions of $Ax = b$ coincides with the nonempty
+    set of solutions of the normal equations $A^TAx = A^Tb$.
+    \end{theorem}
+
+    \begin{theorem}[Only 1 Least-Squares Soln.]
+    The matrix $A^TA$ is invertible iff the columns of $A$ are linearly independent.
+    In this case, there exists only one least squares solution $\^x$:
+    $$\^x = (A^TA)^{-1} A^T b$$
+    \end{theorem}
+
+    \begin{theorem}[Factorization and Linear Indep.]
+    Given an $m \times n$ matrix $A$ with linearly idnependent columns, let
+    $A = QR$ be a $QR$ factorization of $A$,
+    Then for each $b \in \R^m$, the unique least-squares solution to
+    $Ax = b$ is
+    $$\^x = R^{-1}Q^Tb$$
+    \end{theorem}
+
+\end{card}
+
+
+\begin{card}
+    \subsection{Applications to Linear Models}
+
+    \begin{compactdesc}
+    \item[Statistical analysis] can be made using the least-squares
+        solution of a given system. This is helpful in finding a function
+        that fits a set of data.
+    \item[Names] Design matrix $X$, parameter vector $\beta$, observation vector $y$.
+    \item[Least-Squares Lines] the line $y = \beta_0 + \beta_1 x$ that
+        minimizes the sum of the squares of the residuals (offsets from the line).
+        The closest fitting line to a set of points.
+    \item[Regression Coefficients] found by finding the least-squares
+        solution $\beta$ of the system $X\beta = y$.
+    \item[Example] find equation that best fits the points
+        $(2, 1), (5, 2), (7, 3), (8, 3)$.
+        $$X = \begin{bmatrix}1&2\\1&5\\1&7\\1&8\end{bmatrix}
+        \qquad
+        y = \begin{bmatrix}1\\2\\3\\3\end{bmatrix}$$
+        The normal equations $X^TX\beta = X^Ty$ have solution
+        $\beta_0 = 2/7$ and $\beta_1 = 5/14$.
+        Therefore the least-squares line fitting the data is
+        $y = 2/7 + 5x/14$.
+
+    \item[Mean-deviation form] compute average $\overline{x}$ of the original x-values
+        and form a new variable $x^* = x - \overline{x}$.
+        Then the $X$ matrix is orthogonal and its $QR$ factorization can be
+        used for a simpler computation of the solution.
+    \item[Residual Vector] $\epsilon = y - X\beta$.
+    \item[General Linear Model] any equation of the form $y = X\beta + \epsilon$.
+        The matrix $X$ need not model a linear equation, it could be an
+        entirely different curve for the data.
+    \item[Fitting of Other Curves] if it is best to fit the data to a
+        general function $y = \beta_0f_0(x) + \dotsb + \beta_kf_k(x)$
+        then the design matrix $X$ is simply changed to
+        $$X = \begin{bmatrix}f_0(x_1) & \cdots & f_k(x_k)
+                          \\ \vdots & \ddots & \vdots
+                          \\ f_0(x_n) & \cdots & f_k(x_n) \end{bmatrix}$$
+
+    \item[Multiple Regression] if an experiment involves two independent
+        variables $u,v$ and one dependent variable, we can find a \textbf{trend surface}.
+        Data: $(u_0,v_0,y_0), \dotsc, (u_n, v_n, y_n)$.
+        Function: $y = \beta_0 f_0(u,v) + \dotsb + \beta_k f_k(u,v)$.
+        The design matrix is computed as above.
+    \end{compactdesc}
+\end{card}
+
+
+\begin{card}
+    \subsection{Inner Product Spaces}
+
+    \begin{compactdesc}
+    \item[Inner Product on a Vector Space] $V$ is a function
+        $\inner{\cdot,\cdot}: V \times V \to \R$.
+        It must satisfy the following axioms for all $u,v,w \in V$ and
+        all $c \in \R$:
+        \begin{compactenum}
+        \item $\inner{u,v} = \inner{v,u}$
+        \item $\inner{u+v, w} = \inner{u,w} + \inner{v,w}$
+        \item $\inner{cu, v} = c\inner{u,v}$
+        \item $\inner{u, u} \geq 0$ and $\inner{u,u} = 0$ iff $u = 0$
+        \end{compactenum}
+    \item[Inner Product Space] is a vector space with an inner product
+    \item[Length] $\norm{v} = \sqrt \inner{v,v}$ for all $v \in V$.
+    \item[Distance] the distance between $v,u \in V$ is $\norm{u,v}$.
+    \item[Orthogonality] two vectors are orthogonal if $\inner{u,v} = 0$.
+    \item[Projection] of a vector onto a subspace with an orthogonal basis
+        can be constructed as usual. Has the properties described in
+        the Orthognal Decomposition Theorem
+        and the Best Approximation Theorem. %TODO ref plz
+    \item[Gram-Schmidt Process] works as usual. Can be proven.
+    \item[Best Approximation] in Inner Product Spaces.
+
+    \item[Inner Product] for $C[a,b]$
+    \end{compactdesc}
+
+    \begin{theorem}[Cauchy-Schwarz Inequality]
+    For all $u,v \in V$: $$ |\inner{u,v}| \leq \norm{u}\norm{v} $$
+    \end{theorem}
+
+    \begin{theorem}[Triangle Inequality]
+    For all $u,v \in V$: $$ \norm{u + v} \leq \norm{u} + \norm{v} $$
+    \end{theorem}
+\end{card}
+
+
+\begin{card}
+    \subsection{Applications of Inner Product Spaces}
+
+    \begin{compactdesc}
+    \item[Weighted least-squares]
+    \item[Trend Analysis of Data]
+    \item[Fourier Series]
+    \end{compactdesc}
+\end{card}

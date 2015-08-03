@@ -1,0 +1,6 @@
+PWD /home/croh/Dropbox/classes/math254/notes
+INPUT /nix/store/wdxn352nij183pljj3zzxqg9fwkbrlz3-TeXLive-linkdir/share/texmf-dist/web2c/texmf.cnf
+INPUT /nix/store/wdxn352nij183pljj3zzxqg9fwkbrlz3-TeXLive-linkdir/texmf-dist/web2c/texmf.cnf
+INPUT /nix/store/wdxn352nij183pljj3zzxqg9fwkbrlz3-TeXLive-linkdir/texmf-config/web2c/pdftex/pdflatex.fmt
+INPUT /home/croh/Dropbox/classes/math254/notes/ch3.tex
+OUTPUT ch3.log

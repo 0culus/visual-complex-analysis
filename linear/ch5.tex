@@ -1,0 +1,363 @@
+\section{Eigenvalues and Eigenvectors}
+\begin{outline}
+\end{outline}
+
+\begin{card}
+    \subsection{Definition}
+
+    \begin{compactdesc}
+    \item[Eigenvector] of an $n \times n$ matrix $A$ is any nonzero vector $x$
+        such that $Ax = \lambda x$ for some scalar called an \textbf{eigenvalue}
+        $\lambda$.
+    \item[Eigenvalue] $\lambda$ exists if there is a nontrivial solution $x$
+        of $Ax = \lambda x$.
+        This $x$ is an \textsl{eigenvector corresponding to $\lambda$}.
+        This scalar may be $0$.
+    \item[Find eigenspace] given eigenvalue $\lambda$: solution set to
+        $Ax = \lambda x$ or equivalently $(A - \lambda I) x = 0$.
+        The null space of the matrix $A - \lambda I$.
+    \item[Difference Equations] can be solved using eigenvalues.
+        If $x_{k+1} = Ax_k$ for $k \in \Z_{+,0}$, then an explicit solution to
+        the system is $x_k = \lambda^k x_0$ for $k \in \Z_+$.
+    \item[Inductive step] this works because:
+        $Ax_k = A(\lambda^k x_0) = \lambda^k (A x_0) = \lambda^k(\lambda x_0) = x_{k+1}$.
+        Linear combinations of the form $\lambda^k v$ are also solutions.
+    \end{compactdesc}
+
+    \begin{theorem}[Eigenvalues of Triangular]
+    The eigenvalues of a triangular matrix are the entries on its main diagonal.
+    \end{theorem}
+
+    \begin{theorem}[Linear Independence of Eigenvectors]
+    If $v_1, \dotsc, v_r$ are eigenvectors corresponding to distinct eigenvalues
+    $\lambda_1, \dotsc, \lambda_r$ of a matrix,
+    then the set $\{v_1, \dotsc, v_r\}$ is linearly independent.
+    \end{theorem}
+
+\end{card}
+
+
+\begin{card}
+    \subsection{Characteristic Equation}
+
+    \begin{compactdesc}
+    \item[Motivation] the determinant of a matrix is zero iff it is not
+        invertible; if this is the case then its Null space has non-zero
+        dimension.
+    \item[Determinants] see chapter 3
+    \item[Characteristic Eqn.] a scalar $\lambda$ is an eigenvalue of an
+        $n \times n$ matrix $A$ iff $\lambda$ satisfies the characteristic
+        equation: $\det A - \lambda I = 0$. Also called characteristic
+        polynomial of degree $n$.
+    \item[Multiplicity] of an eigenvalue is its multiplicity in the
+        characteristic equation. Example: the characteristic polynomial
+        $(\lambda - 3)^5 = 0$ reveals an eigenvalue $3$ with multiplicity $5$.
+    \item[Similarity] $n \times n$ matrices $A$ and $B$ are similar if
+        there exists an invertible matrix $P$ such that $A = PBP^{-1}$.
+    \item[Similarity Transformation] the act of changing $A$ into $P^{-1}AP$.
+    \item[Application to Dynamical] Systems. Let $A$ be an $n \times n$ matrix.
+        Let $x_0$ be the initial state with
+        coordinates $c_1, \dotsc, c_n$ with respect
+        to the basis formed by eigenvectors $v_1, \dotsc, v_n$.
+
+        If all the eigenvalues are in $[-1,1]$, then the system converges to a
+        steady state as $k \to \infty$.
+        It could also diverge, or just converge to zero.
+
+        The system $x_{k+1} = Ax_k$ has an explicit solution
+        $x_k = c_1 \lambda_1^k v_{\lambda 1} + \dotsb + c_n \lambda_n^k v_{\lambda n}$.
+    \end{compactdesc}
+
+    \begin{theorem}[Invertible Matrix Th. (cont.)]
+    Let $a$ be an $n \times n$ matrix. Then $A$ is invertible iff
+    \begin{compactenum}
+    \item The number $0$ is not an eigenvalue of $A$
+    \item $\det A \neq 0$
+    \end{compactenum}
+    \end{theorem}
+
+    \begin{theorem}[Properties of Determinants]
+    --- see section \ref{ch-dets} ---
+    \end{theorem}
+
+    \begin{theorem}[Similarity and Eigenvalues]
+    If $n \times n$ matrices $A$ and $B$ are similar, then they have the same
+    characteristic polynomial and the same eigenvalues with the same
+    multiplicities.
+    \end{theorem}
+
+    WARNING: similarity is not the same as row equivalence. Row operations on
+    a matrix usually change its Eigenvalues.
+
+\end{card}
+
+
+\begin{card}
+    \subsection{Diagonalization}
+
+    \begin{compactdesc}
+    \item[Diagonalizable] square matrix is similar to a very specific
+        diagonal matrix.
+    \item[Eigenvector Basis] is formed by the set of all eigenvectors for
+        all eigenvalues of a diagonalizable $n \times n$ matrix.
+        Because it contains enough independent vectors,
+        this set forms a basis for $\R^n$.
+    \item[Diagonalizing Matrices] To factor an $n \times n$ matrix $A$ into
+        form $A = PBP^{-1}$, four steps are required.
+    \begin{compactenum}
+    \item Find eigenvalues of $A$. Use computer or characteristic equation.
+    \item Find $n$ linearly independent vectors of $A$.
+        Procedure: find the null space of matrix $A - \lambda I$.
+        \textbf{Check for linear independence} amongst the vectors.
+    \item Construct $P$ from the eigenvectors. Order unimportant.
+        \textbf{Check $P$ is invertible}.
+    \item Construct $D$ from the corresponding eigenvalues.
+        \textbf{Same order} as $P$.
+    \end{compactenum}
+    \end{compactdesc}
+
+
+    \begin{theorem}[Diagonalization Theorem]
+    If an $n \times n$ matrix $A$ has $n$ distinct eigenvalues,
+    then it is diagonalizable.
+    \end{theorem}
+
+\end{card}
+\begin{card}
+    \begin{compactdesc}
+    \item[Powers of a matrix] with form $A = PDP^{-1}$ can be easily calculated
+        $A^k = PD^kP^{-1}$.
+    \item[Functions on a matrix] with form $A = PDP^{-1}$ can also be easily
+        calculated. For example, to take the sine simply take the sine of the
+        diagonal entries of $D$: $\sin A = P (\sin D) P^{-1}$.
+        Found by using power series of $\sin, \exp$, etc.
+    \item[Non-distinct Eigenvalues]
+    If the matrix $A$ has less than $n$ eigenvalues, it is still possible
+    for $A$ to be diagonalizable. See Th.~\ref{th-nn-n-distinct}.
+    \end{compactdesc}
+
+    \begin{theorem}[$n \times n$ and $p$ distinct eigenvalues]\label{th-nn-n-distinct}
+    Let $A$ be an $n \times n$ matrix
+    whose distinct eigenvalues are $\lambda_1, \dotsc, \lambda_p$.
+    \begin{compactenum}
+    \item For $1 \leq k \leq p$, the dimension of the eigenspace for $\lambda_k$
+        is less than or equal to the multiplicity of the eigenvalue $\lambda_k$.
+    \item The matrix $A$ is diagonalizable iff the sum of the dimensions of the
+        distinct eigenspaces equals $n$.
+
+        This only happens when the dimensions of the eigenspace for each
+        eigenvalue $\lambda_k$ equals the multiplicity of $\lambda_k$.
+    \item If $A$ is diagonalizable and $\B_k$ is a basis for the eigenspace
+        corresponding to $\lambda_k$, then the total collection of vectors
+        in the sets $\B_1, \dotsc, \B_p$
+        forms an \textbf{eigenvector basis} for $\R^n$.
+    \end{compactenum}
+    \end{theorem}
+
+\end{card}
+
+
+\begin{card}
+    \subsection{Eigenvectors and Linear Transformations}
+
+    \begin{compactdesc}
+    \item[Linear Trans. and $D$] a linear transformation $T(x) = Ax$
+        with a diagonalizable standard matrix $A$
+        can be represented using a simpler transformation of the form:
+        $u \mapsto Du$.
+    \item[Linear Transformation] Let $V, W$ be vector spaces where
+        $\dim V = n$ and $\dim W = m$. Let $T: V \to W$. Choose two ordered
+        bases $\B = \{b_1, \dotsc, b_n\}, \mathcal{C}$ for $V,W$ respectively.
+
+    \item[Matrix-based] representation for the linear transformation $T$ is
+        $T(v) = [M[x]_\B]_\mathcal{C}^{-1}$. As far as coordinate vectors go,
+        $T$ is just a left-multiplication by $M$.
+    \item[Matrix Relative to Bases] $\B$ and $\mathcal{C}$ is the $m \times n$
+        matrix:
+        $M = \begin{bmatrix}
+        [T(b_1)]_\mathcal{C} & \cdots & [T(b_n)]_\mathcal{C}
+        \end{bmatrix}$.
+    \item[Change-of-coordinates] matrix is created when $V=W$ and
+        $T$ is the identity function.
+    \item[Example] suppose $\B = \{b_1, b_2\}$ is a basis for $V$ and
+        $\mathcal{C} = \{c_1, c_2, c_3\}$ is a basis for $W$. Let
+        $T : V \to W$ be a linear transformation with the property that
+        $T(b_1) = 3c_1 - 2c_2 + 5c_3$ and $T(b_2) = 4c_1 + 7c_2 - c_3$.
+
+        The matrix $M$ relative to $\B$ and $\mathcal{C}$ is
+        $$
+        M = [[T(b_1)]_\mathcal{C} \quad [T(b_2)]_\mathcal{C}]
+        = \begin{bmatrix} 3 & 4 \\ -2 & 7 \\ 5 & -1 \end{bmatrix}
+        $$
+\end{compactdesc}
+\end{card}
+
+\begin{card}
+\begin{compactdesc}
+    \item[From V into V] (linear transformations)
+        If $T: V \to V$, then the matrix $M$ is called the matrix for $T$
+        relative to $\B$ or $\B$-matrix for $T$ denoted by $[T]_\B$.
+        Then $[T(x)]_\B = [T]_\B [x]_\B$.
+    \item[Example] mapping $T: \PP_2 \to \PP_2$ is defined by
+        $T(a_0 + a_1t + a_2t^2) = a_1 + 2a_2t$.
+        The basis $\B = \{1,t,t^2\}$.
+
+        The $\B$-matrix for $T$ is $T(1) = 0; T(t) = 1; T(t^2) = 2t$.
+        The coordinates of these polynomials are used (in order) as columns:
+        $$
+        [T]_\B = \begin{bmatrix}0 & 1 & 0 \\ 0 & 0 & 2 \\ 0 & 0 & 0 \end{bmatrix}
+        $$
+        For a general polynomial $T(a_0 + a_1t + a_2t^2)
+        = [T]_\B \begin{bmatrix}a_0 \\ a_1 \\ a_2 \end{bmatrix}$.
+    \item[Linear Trans. on $\mathbb{R}^n$] if the transformation is $T(x) = Ax$
+        and $A$ is diagonalizable, then the $\B$-matrix for $T$ is
+        a diagonal matrix.
+    \item[Similarity] of Matrix Representations
+    \item[Efficient computation] of a $\B$-matrix $P^{-1}AP$ ...
+    \end{compactdesc}
+
+    \begin{theorem}[Diagonal Matrix Representation]
+    Suppose $A = PDP^{-1}$ where $D$ is an $n \times n$ diagonal matrix.
+    If $\B$ is the basis of $\R^n$ formed from the columns of $P$,
+    then $D$ is the $\B$-matrix representation for the transformation
+    $x \mapsto Ax$.
+
+    That is to say, the mappings $x \mapsto Ax$ and $u \mapsto Du$ are the
+    same linear transformation relative to different bases.
+    \end{theorem}
+
+\end{card}
+
+
+\begin{card}
+    \subsection{Complex Eigenvalues}
+
+    \begin{compactdesc}
+    \item[Complex eigenvalues] allowed? Then $A$ must act on vectors in $\C^n$.
+        Linear algebra can be rebuilt using $C^n$ instead of $\R^n$,
+        but that is not our concern here.
+    \item[Finding complex eigenvalues], these arise naturally from the Fundamental
+        Theorem of Algebra.
+    \item[Finding complex eigenvectors] use a machine for row reducing complex
+        matrices.
+    \item[Rotations] a real matrix with complex eigenvalues always defines
+        a rotation of vectors.
+    \item[Complex conjugate] of a complex number $\overline{a + bi} = a - bi$.
+        For a matrix, just take the complex conjugate of each entry.
+        Properties for complex numbers, vectors and matrices:
+        $$\overline{rx} = \overline{r}\overline{x}
+        , \quad \overline{Bx} = \overline{B}\overline{x}
+        , \quad \overline{BC} = \overline{B}\overline{C}
+        , \quad \overline{rB} = \overline{r}\overline{B}$$
+    \item[Complex to real] Let $c \in \C$. Then $\overline{c} \in C$
+        but $c\overline{c} \in \R$. This is why a real matrix' eigenvalues
+        come in conjugate pairs.
+    \item[Conjugate pairs] if a real matrix $A$ has complex eigenvalue $a + bi$
+        then $a - bi$ is also an eigenvalue.
+    \item[Scale and rotate] consider the matrix
+        $C = \left[\begin{smallmatrix}a & -b \\ b & a\end{smallmatrix}\right]$.
+        Its eigenvalues are $\lambda_{1,2} = a \pm bi$. Let $r = |\lambda_1|$
+        and $\phi$ be the angle between ray from $0$ to $(a,b)$.
+        Then the matrix represents a scaling followed by a rotation transformation:
+        $C = \left[\begin{smallmatrix} r & 0 \\ 0 & r \end{smallmatrix}\right]
+        \left[\begin{smallmatrix} \cos\phi & -\sin\phi \\ \sin\phi & \cos\phi \end{smallmatrix}\right]$.
+    \item[Rotation in any matrix] with complex eigenvalues $A$.
+        Any matrix with complex eigenvalues is similar to $C$.
+        Therefore, multiplication by $A$ represents a change of coordinates
+        wrapping a rotation $PCP^{-1}$.
+        occur in complex conjugate pairs.
+        Then $A^kx$ can trace out an ellipse instead of a circle.
+    \end{compactdesc}
+    \begin{theorem}[Complex Eigenvalues and Rotations]
+    Let $A$ be a real $2\times2$ matrix with a complex eigenvalue pair $a \pm bi$.
+    where $b \neq 0$ and an associated vector $V \in \C^2$.
+    Then $A = PCP^{-1}$ where $P = [\text{Re } v \quad \text{Im } v]$
+    and $C = \left[\begin{smallmatrix}a & -b \\ b & a\end{smallmatrix}\right]$.
+    \end{theorem}
+\end{card}
+
+
+\begin{card}
+    \subsection{Discrete Dynamical Systems}
+
+    \begin{compactdesc}
+    \item[Eigenvector decomposition] of a discrete dynamical system
+        $x_{k+1} = Ax_k$ determines the limit of the sequence $\{x_k\}$.
+        If $A$ has $m$ eigenvalues $\lambda_i$ and $x_0$ has coordinates
+        $c_i$ with respect to eigenvector basis $v_i$ formed by the eigenvalues then
+        $x_k = c_1\lambda_1^kv_1 + \dotsb + c_m\lambda_m^kv_m$.
+    \item[Convergence/divergence] the system converges if every eigenvalue
+        has magnitude less than or equal to $1$.
+        The system diverges if at least one eigenvalue is greater than $1$
+        in magnitude.
+    \item[Trajectory] graphing the sequence $x_0, x_1, \dotsc$.
+    \item[2D Systems] have several types of trajectories.
+    \item[Boring] solutions are simple when $c = 0$ or when the eigenvalues are $1$.
+    \item[Attractor] trajectories converge to the origin if both eigenvalues
+        are real and $< 1$ in magnitude
+    \item[Repellor] trajectories diverge if both eigenvalues
+        are real and $> 1$ in magnitude
+    \item[Saddle point] trajectories converge to a line but diverge away from the
+        origin if both eigenvalues are real and
+        one is $<1$ and the other is $>1$ in magnitude.
+    \item[Nondiagonal case] %TODO
+    \item[Complex eigenvalues] are conjugate pairs, so they have the same
+        magnitude.
+    \item[Spiral outward] trajectories diverge and rotate
+        if complex eigenvalues have magnitude $>1$.
+    \item[Spiral inward] trajectories converge and rotate
+        if complex eigenvalues have magnitude $<1$.
+    \item[Elliptical trajectory] trajectories are rotated
+        if complex eigenvalues have magnitude $1$.
+    \end{compactdesc}
+
+\end{card}
+
+
+\begin{card}
+    \subsection{Applications to Differential Equations}
+
+    \begin{compactdesc}
+    \item[Differential Equation]
+    \item[Fundamental set of solutions]
+    \item[Initial value problem]
+    \item[Eigenfunctions]
+    \item[Trajectory]
+    \item[Attractor/sink]
+    \item[Repellor/source]
+    \item[Saddle point]
+    \item[Complex eigenvalues]
+    \item[Spiral point]
+    \end{compactdesc}
+
+\end{card}
+
+
+\begin{card}
+    \subsection{Iterative Estimates for Eigenvalues}
+
+    \begin{compactdesc}
+    \item[Strictly Dominant Eigenvalue]
+    \item[The power method] can approximate the strictly dominant eigenvalue of
+        a matrix:
+        \begin{compactenum}
+        \item
+        \item
+        \item
+        \end{compactenum}
+    \item[Inverse power method] provides approximation for any eigenvalue:
+        \begin{compactenum}
+        \item
+        \item
+        \item
+        \item
+        \end{compactenum}
+    \item[]
+    \item[]
+    \item[]
+    \item[]
+    \end{compactdesc}
+
+\end{card}
+
+

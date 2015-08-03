@@ -1,0 +1,191 @@
+\section{Determinants}\label{ch-dets}
+\begin{outline}
+\end{outline}
+
+\begin{card}
+    \subsection{Introduction to Determinants}
+
+    \begin{compactdesc}
+    \item[Simple Determinants] a $2 \times 2$ matrix has determinant
+        $ad - bc = a_{11}d_{22} - b_{12}c_{21}$.
+        A $1 \times 1$ matrix has determinant $a_{11}$
+    \item[Deletion] of a row $i$ and a column $j$ of a matrix
+        is represented as $A_{ij}$
+    \item[Cofactor] along the $i$th row and $j$th columnt is
+        $C_{ij} = (-1)^{i + j} \det A_{ij}$
+    \end{compactdesc}
+
+    \begin{theorem}[Cofactor Expansion]
+        Let $A$ be an $n\times n$ matrix. The determinant can be found in
+        two similar ways:
+
+        Down column $j$ is, we have $\det A = \sum_{k=1}^n a_{kj} C_{kj}$.
+
+        Along row $i$ is, we have $\det A = \sum_{k=1}^n a_{ik} C_{ik}$.
+    \end{theorem}
+
+    \begin{theorem}[Triangular matrix]
+    A triangular matrix has a determinant equal to the product of the
+        diagonal elements: $\det A = \prod a_{ii}$.
+    \end{theorem}
+\end{card}
+
+
+\begin{card}
+    \subsection{Properties of Determinants}
+    %pg 209/193
+
+    \begin{theorem}[Row Operations and Det]\label{th-rowop-det}
+    Let $A$ be a square matrix.
+
+    \begin{compactenum}
+    \item If a multiple of one row of $A$ is added to another row to
+        produce matrix $A'$, then $\det A = \det A'$.
+    \item If two rows are interchanged to produce matrix $A'$, then
+        $-\det A = \det A'$.
+    \item If one row is multiplied by $k$ to produce a matrix $A'$, then
+        $k \det A = \det A'$.
+    \end{compactenum}
+    \end{theorem}
+
+    \begin{compactdesc}
+    \item[Common use of Th \ref{th-rowop-det}] factor out a multiple of
+        a row to simplify finding the determinant.
+    \item[Row op based formula] for calculating determinant of a matrix $A$
+        row equivalent to a matrix $U$ in echelon form.
+        Let $r$ be the number of row exchanges it takes to transform $A$.
+        Efficient!
+        $$\det A = \begin{cases}
+            (-1)^r \cdot \prod \text{ pivots in U} & \text{if A is invertible}
+         \\ 0 & \text{if A is not invertible}
+        \end{cases}$$
+    \end{compactdesc}
+
+    \begin{theorem}[IMT and non-zero Det]
+        A square matrix $A$ is invertible iff $\det A \neq 0$.
+    \end{theorem}
+
+    \begin{theorem}[Column operations and Det]
+        For a square matrix $A$, $\det A^T = \det A$.
+    \end{theorem}
+
+    \begin{theorem}[Multiplication and Det]\label{th-det-prod}
+        If $A$ and $B$ are square matrices, then $\det AB = \det A \det B$.
+    \end{theorem}
+
+    WARNING: no analogue for summation of matrices $\det (A + B)$.
+
+    \begin{compactdesc}
+    \item[Determinant is a Linear] function for a certain set of matrices.
+        Useful in advanced courses. Assume a matrix has constant columns
+        except for one. This varying column is the parameter $x$ to
+        a function $T(x) = \det \begin{pmatrix} a_1 \cdots x \cdots a_n \end{pmatrix}$.
+        It can be shown that $T(cx) = cT(x)$ and $T(u + v) = T(u) + T(v)$.
+    % \item[Proof of Th \ref{th-rowop-det}]
+        % TODO
+    % \item[Proof of Th \ref{th-det-prod}]
+        % TODO
+    \end{compactdesc}
+\end{card}
+
+
+\begin{card}
+    \subsection{Cramer's Rule, Volume, Linear Transformations}
+
+    \begin{theorem}[Cramer's Rule]\label{th-cramer}
+    Let $A$ be an invertible $n \times n$ matrix.
+    For any $b \in \R^n$ the unique solution $x$ of $Ax = b$ has entries
+    given by
+    $$
+        x_i = {\det A_i(b)}{\det A}, \qquad i = 1, \dotsc, n
+    $$
+    \end{theorem}
+
+    \begin{compactdesc}
+    \item[Proof of Th \ref{th-cramer}] If $Ax = b$, then
+    $A \cdot I_i(x) =
+    \begin{bmatrix} Ae_1 & \cdots & Ax & \cdots & Ae_n \end{bmatrix}
+    =
+    \begin{bmatrix} a_1 & \cdots & b & \cdots & a_n \end{bmatrix}
+    = A_i(b)$.
+    By the multiplicative property of determinants,
+    $\det A \det I_i(x) = \det A_i(b)$.
+    But $\det I_i(x) = x$ because it is a diagonal matrix.
+    Because $A$ is invertible, $\det A \neq 0$ and it follows that
+    $x = \det A_i(b) / \det A$.
+    \item[Adjugate or classical adjoint] of an $n \times n$ matrix $A$ is
+        the matrix formed by taking the cofactors of every element in
+        $A$ and then transposing the resulting matrix:
+        $$
+        adj \@ A =
+            \begin{bmatrix} C_{11} & \cdots & C_{1n}
+                         \\ \vdots & \ddots & \vdots
+                         \\ C_{n1} & \cdots & C_{nn}
+            \end{bmatrix}^T
+        $$
+    \end{compactdesc}
+
+    \begin{theorem}[Inverse formula]
+        Let $A$ be an invertible $n \times n$ matrix. Then
+        $$ A^{-1} = \frac{1}{\det A} adj \@ A $$
+    \end{theorem}
+
+    \end{card}
+    \begin{card}
+
+    \begin{theorem}[Simple area and volume]\label{th-area-vol}
+    If $A$ is a $2 \times 2$ matrix, the area of the parallelogram determined
+    by the columns of $A$ is $|\det A|$. The volume of a parallelepiped (3D)
+    determined by the columns of $A$ is also $|\det A|$.
+    \end{theorem}
+
+    \begin{theorem}[Linear trans. and area or vol.]\label{th-trans-area-vol}
+        Let $T: \R^2 \to \R^2$ be a linear transformation determined by a
+        matrix $A$. If $S$ is a parallelogram in $\R^2$, then
+        $$
+            \text{area of } T(S) = |\det A| \cdot \text{area of } S
+        $$
+        Likewise for a parallelepiped $S$ with everything in $\R^3$:
+        $$
+            \text{volume of } T(S) = |\det A| \cdot \text{volume of } S
+        $$
+    \end{theorem}
+
+    \begin{compactdesc}
+    \item[Example area of] parallelogram with vertices at points
+        $(-2,-2), (0,3), (4,-1), (6,4)$. First translate it to the origin
+        $(0,0), (2,5), (6,1), (8,6)$. The area of this figure is
+        $$
+        \det\begin{bmatrix} 2 & 6 \\ 5 & 1 \end{bmatrix} = 28
+        $$
+
+    \item[Proof of Th \ref{th-area-vol}]
+        % TODO
+    \item[Proof of Th \ref{th-trans-area-vol}]
+        % TODO
+    \item[Generalization of Th \ref{th-trans-area-vol}] This theorem holds for
+        any region with finite area in $\R^3$ or finite volume in $\R^3$.
+    \item[Example with ellipse] which has equation $x^2/a^2 + y^2/b^2 \leq 1$.
+        It can be transformed into a unit sphere by the transformation
+        with standard matrix
+        $\left[\begin{smallmatrix}
+        a & 0 & \\ 0 & b
+        \end{smallmatrix}\right]$ with determinant $ab$.
+        Because a unit sphere has volume $\pi$, the ellipse has volume $ab\pi$.
+    \item[Circle] Equation of a circle $(x - a)^2 + (y - b)^2 = \sqrt r$
+        which crosses three points
+        $(x_1, y_1), \dotsc, (x_3, y_3)$ is given by:
+        $$
+        \det \begin{bmatrix}
+        x^2 + y^2 & x & y & 1
+     \\ x_1^2 + y_1^2 & x_1 & y_1 & 1
+     \\ x_2^2 + y_2^2 & x_2 & y_2 & 1
+     \\ x_3^2 + y_3^2 & x_3 & y_3 & 1
+        \end{bmatrix}
+        = 0
+        $$
+    \item[Geometric equations] can be expressed in terms of determinants.
+        Similar expressions work for general equations of lines of any dimension,
+        spheres, cones, etc. \dots
+    \end{compactdesc}
+\end{card}
